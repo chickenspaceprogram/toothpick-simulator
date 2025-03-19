@@ -1,0 +1,56 @@
+10'000'000'000 simulations:
+
+40 cores, -O3
+
+trial 1:
+real    0m9.728s
+user    6m18.385s
+sys     0m0.010s
+
+trial 2:
+real    0m9.732s
+user    6m18.391s
+sys     0m0.014s
+
+trial 3:
+real    0m9.717s
+user    6m18.411s
+sys     0m0.016s
+
+
+40 cores, -O2
+
+trial 1:
+real    0m15.759s
+user    10m14.374s
+sys     0m0.017s
+
+trial 2:
+real    0m15.762s
+user    10m14.341s
+sys     0m0.019s
+
+trial 3:
+real    0m15.752s
+user    10m14.432s
+sys     0m0.016s
+
+40 cores, -Ofast
+
+trial 1:
+real    0m9.580s
+user    6m13.252s
+sys     0m0.010s
+
+trial 2:
+real    0m9.616s
+user    6m13.238s
+sys     0m0.010s
+
+trial 3:
+real    0m9.608s
+user    6m13.316s
+sys     0m0.010s
+
+
+After some testing, results with -Ofast are identical to those from -O3. Due to the marginal improvements the build script defaults to -Ofast.

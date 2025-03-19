@@ -9,7 +9,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=28
+#SBATCH --cpus-per-task=40
 
 srun ./build.sh
 srun ./run.sh
