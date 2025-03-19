@@ -1,3 +1,4 @@
 #!/bin/sh
 
-c++ -O3 simulator.cpp main.cpp -o main
+c++ -O3 -std=c++14 simulator.cpp main.cpp -o out/main
+
