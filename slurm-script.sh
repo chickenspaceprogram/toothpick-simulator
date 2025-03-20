@@ -3,7 +3,7 @@
 #SBATCH --job-name=toothpick-toss-sim
 #SBATCH --output=out/sim.out
 #SBATCH --error=out/sim.err
-#SBATCH --mail-type=FAIL
+#SBATCH --mail-type=ALL
 #SBATCH --mail-user=timothy.boose@wsu.edu
 #SBATCH --time=1-00:00:00
 #SBATCH --nodes=1
