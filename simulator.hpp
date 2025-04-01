@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <thread>
 #include <array>
+#include <iostream> 
 
 std::uint64_t simulate(double toothpick_length, double length_between_lines, std::uint64_t num_trials);
 
@@ -30,4 +31,11 @@ std::uint64_t simulate_threads(double toothpick_length, double length_between_li
     }
     return result;
 
+}
+
+inline void sim_batches(double toothpick_length, double length_between_lines, std::uint64_t num_batches, std::uint64_t trials_per_batch) {
+    for (std::uint64_t i = 0; i < num_batches; ++i) {
+        std::cout << simulate(toothpick_length, length_between_lines, trials_per_batch) << ",";
+    }
+    std::cout << std::endl;
 }
