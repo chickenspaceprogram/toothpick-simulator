@@ -1,16 +1,16 @@
-#include "simulator.hpp"
 #include <iostream>
-#include <iomanip>
-#include <limits>
+#include "threads.hpp"
 
-constexpr std::uint64_t NUM_SIMS = 10'000'000'000;
-constexpr std::size_t NUM_THREADS = 40;
+constexpr std::size_t NUM_JOBS = 10;
+constexpr std::size_t BATCHES_PER_JOB = 20;
+constexpr std::size_t BATCH_SIZE = 1000;
+constexpr std::size_t NUM_THREADS = 8;
 
 int main(void) {
-//    std::cout << std::setprecision(std::numeric_limits<double>::digits10 + 1)
-//              << "Precision is currently: " << std::numeric_limits<double>::digits10 << std::endl
-//              << "Number of simulations: " << NUM_SIMS << std::endl
-//              << "Number of threads: " << NUM_THREADS << std::endl << std::endl
-//              << "Estimation for pi: " << (double)2 * NUM_SIMS / simulate_threads<NUM_THREADS>(1, 1, NUM_SIMS) << std::endl;
-    sim_batches(1, 1, 10000, 10000);
+    std::cerr << "Number of jobs: " << NUM_JOBS << std::endl
+              << "Number of batches per job: " << BATCHES_PER_JOB << std::endl
+              << "Simulations per batch: " << BATCH_SIZE << std::endl
+              << "Simulations per job: " << BATCH_SIZE * BATCHES_PER_JOB << std::endl
+              << "Number of threads: " << NUM_THREADS << std::endl << std::endl;
+    simulate_threads<NUM_THREADS>(std::cout, NUM_JOBS, BATCHES_PER_JOB, BATCH_SIZE);
 }
