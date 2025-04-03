@@ -1,9 +1,9 @@
 #include <iostream>
 #include "threads.hpp"
 
-constexpr std::size_t NUM_JOBS = 10;
-constexpr std::size_t BATCHES_PER_JOB = 20;
-constexpr std::size_t BATCH_SIZE = 1000;
+constexpr std::size_t NUM_JOBS = 1000;
+constexpr std::size_t BATCHES_PER_JOB = 1000;
+constexpr std::size_t BATCH_SIZE = 10000;
 constexpr std::size_t NUM_THREADS = 8;
 
 int main(void) {

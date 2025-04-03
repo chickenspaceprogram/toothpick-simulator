@@ -1,8 +1,7 @@
 #include <random>
 #include <cmath>
-#include <iostream>
-#include <thread>
 #include "simulator.hpp"
+#include "pcg/pcg_random.hpp"
 
 // this code isn't the greatest but it does work
 // It should also be easily parallelizable, at least on the CPU.
@@ -10,7 +9,7 @@
 
 struct Point {
     Point() = delete;
-    Point (std::mt19937_64 &gen) {
+    Point (pcg32 &gen) {
         std::uniform_real_distribution<double> x_dist(-1, 1);
         std::uniform_real_distribution<double> y_dist(0, 1);
 
@@ -26,12 +25,12 @@ struct Point {
     double y;
 };
 
-inline double randHeight(std::mt19937_64 &gen, double length) {
+inline double randHeight(pcg32 &gen, double length) {
     std::uniform_real_distribution<double> dist(0, length);
     return dist(gen);
 }
 
-inline std::uint64_t sim_trial(std::mt19937_64 &gen, double toothpick_length, double length_between_lines) {
+inline std::uint64_t sim_trial(pcg32 &gen, double toothpick_length, double length_between_lines) {
     Point pt(gen);
     if (randHeight(gen, length_between_lines) + pt.getHeight(toothpick_length) < length_between_lines) {
         return 0;
@@ -40,11 +39,10 @@ inline std::uint64_t sim_trial(std::mt19937_64 &gen, double toothpick_length, do
 }
 
 std::uint64_t simulate(double toothpick_length, double length_between_lines, std::uint64_t num_trials) {
-    std::random_device dev;
-    std::mt19937_64 gen(dev());
+    pcg32 rand(pcg_extras::seed_seq_from<std::random_device>{});
     std::uint64_t result = 0;
     for (std::uint64_t i = 0; i < num_trials; ++i) {
-        result += sim_trial(gen, toothpick_length, length_between_lines);
+        result += sim_trial(rand, toothpick_length, length_between_lines);
     }
     return result;
 }
