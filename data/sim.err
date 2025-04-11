@@ -1,0 +1,10 @@
+Number of jobs: 1000
+Number of batches per job: 1000
+Simulations per batch: 100000000
+Simulations per job: 100000000000
+Number of threads: 76
+
+
+real	843m23.240s
+user	59298m10.518s
+sys	2m28.854s
